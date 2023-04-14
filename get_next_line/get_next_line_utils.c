@@ -6,7 +6,7 @@
 /*   By: seungjyu <seungjyu@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:38:00 by seungjyu          #+#    #+#             */
-/*   Updated: 2023/04/14 18:35:49 by seungjyu         ###   ########.fr       */
+/*   Updated: 2023/04/14 20:26:28 by seungjyu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,11 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 		}
 		return (dest);
 	}
-	i = (int)n;
-	while (--i >= 0)
-		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
-	return (dest);
+	else
+	{
+		i = n;
+		while (--i >= 0)
+			((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+		return (dest);
+	}
 }
