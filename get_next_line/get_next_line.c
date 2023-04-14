@@ -6,100 +6,77 @@
 /*   By: seungjyu <seungjyu@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:38:00 by seungjyu          #+#    #+#             */
-/*   Updated: 2023/04/06 21:27:50 by seungjyu         ###   ########.fr       */
+/*   Updated: 2023/04/11 18:40:00 by seungjyu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "get_next_line.h"
 #include <unistd.h>
 #include <stdlib.h>
-#include <fcntl.h>
-#include <string.h>
+#include <stdio.h>
 
-#define BUFFER_SIZE 1
-
-
-void	strslice(char *str, int c)
+char	*get_buf(int fd, char *str)
 {
-	size_t	len;
+	int		read_size;
+	char	buf[BUFFER_SIZE + 1];
+
+	read_size = 1;
+	while (read_size != 0 && !ft_strchr(buf, '\n'))
+	{
+		read_size = read(fd, buf, BUFFER_SIZE);
+		buf[read_size] = '\0';
+		str = ft_strjoin_expand(str, buf);
+	}
+	if (read_size == -1)
+		return (0);
+	return (str);
+}
+
+char	*check_line(char *str)
+{
+	char	*line;
 	size_t	i;
 
 	i = 0;
-	len = ft_strlen(str);
-	while (str[i])
-	{
-		if (str[i] = c)
-			str[i] = '\0';
+	if (str[i] == '\0')
+		return (0);
+	while (str[i] && str[i] != '\n')
 		i++;
-	}
-	while (i < len)
-	{
-		str[i] = 0;
-		i++;
-	}
+	line = (char *)malloc(sizeof(char) * (i + 1));
+	line = ft_memmove(line, str, i);
+	if (!line)
+		return (0);
+	if (str[i] == '\n')
+		line[i++] = '\n';
+	line[i] = '\0';
+	// str = check_line2(str);
+	return (line);
 }
 
-ssize_t	check(char *str, const char *buf, int readsize) // 개행 체크 eol 체크 str 체크 str에 이어붙이기
-{
-	if (!readsize)
-		return (0);
-	
-	strslice(buf, "\n");
-	if (!str)
-		str = ft_strdup(dup);
-	else
-	{
-		
-	}
-}
+// char	*check_line2(char *str)
+// {
+// 	char	*tmp;
+// 	int	i;
+
+// 	i = 0;
+// 	while (str[i] && str[i] != '\n')
+// 		i++;
+// 	tmp = (char *)malloc()
+// 	if (ft_strchr(str, '\n'))
+
+// }
 
 char	*get_next_line(int fd)
 {
-	int			readsize;
 	static char	*str;
-	char		buf[BUFFER_SIZE + 1];
+	char		*line;
 
-	if (fd < 1)
-		return (0);
-	readsize = read(fd, buf, BUFFER_SIZE);
-	buf[BUFFER_SIZE] = '\0';
-	if (readsize < 0)
-		return (0);
-	check(str, buf);
-
-}
-
-int	main(void)
-{
-	int			fd;
-	int			read_size;
-	static char	*str;
-	char		buf[BUFFER_SIZE + 1];
-
-	fd = open("test.txt", O_RDONLY);
 	str = 0;
-	read_size = 1;
-	if (fd < 1)
-	{
-		printf("open error\n");
+	if (fd < 1 || BUFFER_SIZE < 1)
 		return (0);
-	}
-	else
-	{
-		while (read_size)
-		{
-			read_size = read(fd, buf, BUFFER_SIZE);
-			buf[read_size] = '\0';
-			if (str == 0)
-				str = ft_strdup(buf);
-			else
-				ft_strcat(str, buf);
-			if (strchr(str, '\n'))
-				return (0);
-		}
-		close(fd);
-	}
-	printf("%s\n", str);
-	free(str);
-	return (0);
+	str = get_buf(fd, str);
+	if (!str)
+		return (0);
+	line = check_line(str);
+	return (line);
 }
