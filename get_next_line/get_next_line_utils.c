@@ -6,13 +6,14 @@
 /*   By: seungjyu <seungjyu@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:38:00 by seungjyu          #+#    #+#             */
-/*   Updated: 2023/04/16 11:14:36 by seungjyu         ###   ########.fr       */
+/*   Updated: 2023/04/18 21:21:41 by seungjyu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
 size_t	ft_strlen(const char *str);
+void	ft_bzero(void *s, size_t n);
 char	*ft_strchr(char *s, int c);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 
@@ -26,6 +27,15 @@ size_t	ft_strlen(const char *str)
 	while (str[i] != '\0')
 		i++;
 	return (i);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+		((unsigned char *)s)[i++] = 0;
 }
 
 char	*ft_strchr(char *s, int c)
@@ -65,7 +75,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	}
 	else
 	{
-		j = n;
+		j = (int)n;
 		while (--j >= 0)
 			((unsigned char *)dest)[j] = ((unsigned char *)src)[j];
 		return (dest);
