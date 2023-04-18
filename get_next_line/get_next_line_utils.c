@@ -6,7 +6,7 @@
 /*   By: seungjyu <seungjyu@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:38:00 by seungjyu          #+#    #+#             */
-/*   Updated: 2023/04/14 20:26:28 by seungjyu         ###   ########.fr       */
+/*   Updated: 2023/04/16 11:14:36 by seungjyu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ char	*ft_strchr(char *s, int c)
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	size_t	i;
+	int		j;
 
 	if (src == 0 && dest == 0)
 		return (0);
@@ -64,9 +65,9 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	}
 	else
 	{
-		i = n;
-		while (--i >= 0)
-			((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+		j = n;
+		while (--j >= 0)
+			((unsigned char *)dest)[j] = ((unsigned char *)src)[j];
 		return (dest);
 	}
 }

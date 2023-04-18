@@ -6,18 +6,14 @@
 /*   By: seungjyu <seungjyu@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:57:48 by seungjyu          #+#    #+#             */
-/*   Updated: 2023/04/14 18:32:05 by seungjyu         ###   ########.fr       */
+/*   Updated: 2023/04/16 17:51:32 by seungjyu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 10
-#endif
-
-#include <stdlib.h>
+# include <stdlib.h>
 
 char	*check_line2(char *str);
 char	*get_buf(int fd, char *str);
