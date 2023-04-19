@@ -6,7 +6,7 @@
 /*   By: seungjyu <seungjyu@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:38:00 by seungjyu          #+#    #+#             */
-/*   Updated: 2023/04/18 21:21:41 by seungjyu         ###   ########.fr       */
+/*   Updated: 2023/04/19 14:57:34 by seungjyu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	size_t	i;
 	int		j;
 
-	if (src == 0 && dest == 0)
+	if ((src == 0 && dest == 0) || n == 0)
 		return (0);
 	if (src >= dest)
 	{

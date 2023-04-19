@@ -6,7 +6,7 @@
 /*   By: seungjyu <seungjyu@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:38:00 by seungjyu          #+#    #+#             */
-/*   Updated: 2023/04/18 22:20:18 by seungjyu         ###   ########.fr       */
+/*   Updated: 2023/04/19 16:59:08 by seungjyu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,18 +87,20 @@ char	*ft_strjoin_expand(char *s1, char const *s2)
 	len_s2 = ft_strlen(s2);
 	str = (char *)malloc(len_s1 + len_s2 + 1);
 	if (!str)
+	{
+		free(s1);
 		return (0);
+	}
+	ft_bzero(str, len_s1 + len_s2 + 1);
 	if (!s1)
 	{
 		s1 = (char *)malloc(1);
-		s1[0] = '\0';
+		if (!s1)
+			return (ft_memmove(str, s2, len_s2));
+		ft_bzero(s1, 1);
 	}
-	// if (!s1 || !s2)
-	// 	return (0);
-	ft_bzero(str, len_s1 + len_s2);
 	ft_memmove(str, s1, len_s1);
 	ft_memmove(str + len_s1, s2, len_s2);
-	str[len_s1 + len_s2] = '\0';
 	free(s1);
 	return (str);
 }
@@ -119,6 +121,7 @@ char	*get_buf(int fd, char *str)
 		if (read_size == -1)
 		{
 			free(buf);
+			free(str);
 			return (0);
 		}
 		buf[read_size] = '\0';
