@@ -6,7 +6,7 @@
 /*   By: seungjyu <seungjyu@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:38:00 by seungjyu          #+#    #+#             */
-/*   Updated: 2023/04/21 18:31:52 by seungjyu         ###   ########.fr       */
+/*   Updated: 2023/04/21 20:18:42 by seungjyu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,16 @@ char	*check_line2(char *str)
 	while (str[i] && str[i] != '\n')
 		i++;
 	if (!str[i] || !str[i + 1])
-	{
-		free(str);
-		str = 0;
-		return (0);
-	}
+		return (ft_free(&str));
 	tmp = (char *)malloc(len - i);
 	if (!tmp)
-		return (0);
+		return (ft_free(&str));
 	ft_bzero(tmp, len - i);
 	if (str[i] == '\n')
 		i++;
 	ft_memmove(tmp, &str[i], len - i);
 	tmp[len - i] = '\0';
-	free(str);
-	str = 0;
+	ft_free(&str);
 	return (tmp);
 }
 
@@ -87,11 +82,7 @@ char	*ft_strjoin_expand(char *s1, char const *s2)
 	}
 	str = (char *)malloc(len_s1 + len_s2 + 1);
 	if (!str)
-	{
-		free(s1);
-		s1 = 0;
-		return (0);
-	}
+		return (ft_free(&s1));
 	ft_bzero(str, len_s1 + len_s2 + 1);
 	ft_memmove(str, s1, len_s1);
 	ft_memmove(str + len_s1, s2, len_s2);
@@ -107,7 +98,7 @@ char	*get_buf(int fd, char *str)
 	read_size = 1;
 	buf = (char *)malloc(BUFFER_SIZE + 1);
 	if (!buf)
-		return (0);
+		return (ft_free(&str));
 	ft_bzero(buf, BUFFER_SIZE + 1);
 	while (read_size != 0 && !ft_strchr(buf, '\n'))
 	{
@@ -137,11 +128,7 @@ char	*get_next_line(int fd)
 		return (0);
 	line = check_line(str);
 	if (!line)
-	{
-		free(str);
-		str = 0;
-		return (0);
-	}
+		return (ft_free(&str));
 	str = check_line2(str);
 	return (line);
 }

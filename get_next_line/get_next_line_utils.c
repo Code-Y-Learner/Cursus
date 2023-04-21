@@ -6,7 +6,7 @@
 /*   By: seungjyu <seungjyu@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:38:00 by seungjyu          #+#    #+#             */
-/*   Updated: 2023/04/19 14:57:34 by seungjyu         ###   ########.fr       */
+/*   Updated: 2023/04/21 19:19:13 by seungjyu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ size_t	ft_strlen(const char *str);
 void	ft_bzero(void *s, size_t n);
 char	*ft_strchr(char *s, int c);
 void	*ft_memmove(void *dest, const void *src, size_t n);
+char	*ft_free(char **s);
 
 size_t	ft_strlen(const char *str)
 {
@@ -80,4 +81,11 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 			((unsigned char *)dest)[j] = ((unsigned char *)src)[j];
 		return (dest);
 	}
+}
+
+char	*ft_free(char **s)
+{
+	free(*s);
+	*s = 0;
+	return (0);
 }
