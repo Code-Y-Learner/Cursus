@@ -52,16 +52,16 @@ char	*check_line2(char *str)
 	while (str[i] && str[i] != '\n')
 		i++;
 	if (!str[i] || !str[i + 1])
-		return (ft_free(&str));
+		return (ft_clear(&str));
 	tmp = (char *)malloc(len - i);
 	if (!tmp)
-		return (ft_free(&str));
+		return (ft_clear(&str));
 	ft_bzero(tmp, len - i);
 	if (str[i] == '\n')
 		i++;
 	ft_memmove(tmp, &str[i], len - i);
 	tmp[len - i] = '\0';
-	ft_free(&str);
+	ft_clear(&str);
 	return (tmp);
 }
 
@@ -82,7 +82,7 @@ char	*ft_strjoin_expand(char *s1, char const *s2)
 	}
 	str = (char *)malloc(len_s1 + len_s2 + 1);
 	if (!str)
-		return (ft_free(&s1));
+		return (ft_clear(&s1));
 	ft_bzero(str, len_s1 + len_s2 + 1);
 	ft_memmove(str, s1, len_s1);
 	ft_memmove(str + len_s1, s2, len_s2);
@@ -98,7 +98,7 @@ char	*get_buf(int fd, char *str)
 	read_size = 1;
 	buf = (char *)malloc(BUFFER_SIZE + 1);
 	if (!buf)
-		return (ft_free(&str));
+		return (ft_clear(&str));
 	ft_bzero(buf, BUFFER_SIZE + 1);
 	while (read_size != 0 && !ft_strchr(buf, '\n'))
 	{
@@ -128,7 +128,7 @@ char	*get_next_line(int fd)
 		return (0);
 	line = check_line(str[fd]);
 	if (!line)
-		return (ft_free(&str[fd]));
+		return (ft_clear(&str[fd]));
 	str[fd] = check_line2(str[fd]);
 	return (line);
 }

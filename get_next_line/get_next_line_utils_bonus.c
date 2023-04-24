@@ -16,7 +16,7 @@ size_t	ft_strlen(const char *str);
 void	ft_bzero(void *s, size_t n);
 char	*ft_strchr(char *s, int c);
 void	*ft_memmove(void *dest, const void *src, size_t n);
-char	*ft_free(char **s);
+char	*ft_clear(char **s);
 
 size_t	ft_strlen(const char *str)
 {
@@ -83,7 +83,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	}
 }
 
-char	*ft_free(char **s)
+char	*ft_clear(char **s)
 {
 	free(*s);
 	*s = 0;

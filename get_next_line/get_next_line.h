@@ -6,7 +6,7 @@
 /*   By: seungjyu <seungjyu@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:57:48 by seungjyu          #+#    #+#             */
-/*   Updated: 2023/04/24 14:11:58 by seungjyu         ###   ########.fr       */
+/*   Updated: 2023/04/24 15:13:46 by seungjyu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *str);
 void	ft_bzero(void *s, size_t n);
 char	*ft_strchr(char *s, int c);
 void	*ft_memmove(void *dest, const void *src, size_t n);
-char	*ft_free(char **s);
+char	*ft_clear(char **s);
 char	*ft_strjoin_expand(char *s1, char const *s2);
 
 #endif
