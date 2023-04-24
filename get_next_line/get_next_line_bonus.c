@@ -121,7 +121,7 @@ char	*get_next_line(int fd)
 	static char	*str[OPEN_MAX];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE < 1)
+	if (fd < 0 || BUFFER_SIZE < 1 || fd >= OPEN_MAX)
 		return (0);
 	str[fd] = get_buf(fd, str[fd]);
 	if (!str[fd])

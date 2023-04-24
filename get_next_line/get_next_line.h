@@ -6,12 +6,16 @@
 /*   By: seungjyu <seungjyu@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:57:48 by seungjyu          #+#    #+#             */
-/*   Updated: 2023/04/24 15:13:46 by seungjyu         ###   ########.fr       */
+/*   Updated: 2023/04/24 18:05:00 by seungjyu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1000
+# endif
 
 # include <stdlib.h>
 
