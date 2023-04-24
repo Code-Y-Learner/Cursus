@@ -118,7 +118,7 @@ char	*get_buf(int fd, char *str)
 
 char	*get_next_line(int fd)
 {
-	static char	*str[4096];
+	static char	*str[OPEN_MAX];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE < 1)

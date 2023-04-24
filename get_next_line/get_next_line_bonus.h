@@ -14,6 +14,7 @@
 # define GET_NEXT_LINE_BONUS_H
 
 # include <stdlib.h>
+# include <limits.h>
 
 char	*check_line2(char *str);
 char	*get_buf(int fd, char *str);
