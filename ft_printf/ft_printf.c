@@ -12,8 +12,9 @@
 
 #include <stdarg.h>
 #include <stdio.h>
+#include "ft_write.c"
 
-int ft_printf(const char *format, ...);
+int	ft_printf(const char *format, ...);
 int	check_format(const char *str, va_list ap);
 
 int	check_format(const char *str, va_list ap)
@@ -22,8 +23,10 @@ int	check_format(const char *str, va_list ap)
 
 	i = 0;
 	if (str[i] == 's')
-		printf("%s", va_arg(ap, char *));
-	elif (str[i] == '')
+		ft_swrite(va_arg(ap, char *));
+	else if (str[i] == 'c')
+		ft_cwrite(va_arg(ap, int));
+	else if (str[i] == '%')
 	return (0);
 }
 
@@ -34,7 +37,7 @@ int ft_printf(const char *format, ...)
 
 	i = 0;
 	va_start(ap, format);
-	while(format[i])
+	while (format[i])
 	{
 		if (format[i] == '%')
 			check_format(&format[++i], ap);
@@ -46,6 +49,6 @@ int ft_printf(const char *format, ...)
 
 int	main(void)
 {
-	ft_printf("%s", "this is great");
+	ft_printf("%c\n %s %s %c\n", 'a', "this is first\n", "this is second\n" , 'c');
 }
 
