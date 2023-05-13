@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdio.h>
 #include "ft_printf.h"
 
 int	ft_swrite(char *str)
@@ -18,6 +19,11 @@ int	ft_swrite(char *str)
 	int		i;
 
 	i = 0;
+	if (str == 0)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
 	while (str[i])
 		write(1, &str[i++], 1);
 	return (i);
@@ -31,12 +37,12 @@ int	ft_cwrite(int c)
 
 int	ft_pwrite(void *ptr)
 {
-	int			i;
-	long long	add;
-	char		address[17];
+	int					i;
+	unsigned long long	add;
+	char				address[17];
 
 	i = 15;
-	add = (long long)ptr;
+	add = (unsigned long long)ptr;
 	address[16] = '\0';
 	while (i >= 0)
 	{
@@ -47,12 +53,13 @@ int	ft_pwrite(void *ptr)
 		add /= 16;
 		i--;
 	}
-	write(1, "0x", 2);
-	i++;
+	write(1, "0x", ++i + 2);
 	while (address[i] == '0')
 		i++;
 	write(1, address + i, 16 - i);
-	return (2 + i);
+	if (ptr == 0)
+		write(1, "0", --i - 13);
+	return (18 - i);
 }
 
 int	ft_dwrite(int c)

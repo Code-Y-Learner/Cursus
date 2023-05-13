@@ -13,33 +13,33 @@
 #include "ft_printf.h"
 
 int	ft_printf(const char *format, ...);
-int	check_format(const char *str, va_list ap);
+int	check_format(const char *str, va_list *ap);
 
-int	check_format(const char *str, va_list ap)
+int	check_format(const char *str, va_list *ap)
 {
 	int	i;
 
 	i = 0;
 	if (str[i] == 's')
-		i += ft_swrite(va_arg(ap, char *));
+		i += ft_swrite(va_arg(*ap, char *));
 	else if (str[i] == 'c')
-		i += ft_cwrite(va_arg(ap, int));
+		i += ft_cwrite(va_arg(*ap, int));
 	else if (str[i] == '%')
 		i += ft_cwrite('%');
 	else if (str[i] == 'p')
-		i += ft_pwrite(va_arg(ap, void *));
+		i += ft_pwrite(va_arg(*ap, void *));
 	else if (str[i] == 'i' || str[i] == 'd')
-		i += ft_dwrite(va_arg(ap, int));
+		i += ft_dwrite(va_arg(*ap, int));
 	else if (str[i] == 'u')
-		i += ft_uwrite(va_arg(ap, int));
+		i += ft_uwrite(va_arg(*ap, int));
 	else if (str[i] == 'x')
-		i += ft_xwrite(va_arg(ap, int), 0);
+		i += ft_xwrite(va_arg(*ap, int), 0);
 	else if (str[i] == 'X')
-		i += ft_xwrite(va_arg(ap, int), 1);
+		i += ft_xwrite(va_arg(*ap, int), 1);
 	return (i);
 }
 
-int ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
 	int		i;
 	int		buffer;
@@ -51,11 +51,12 @@ int ft_printf(const char *format, ...)
 	while (format[i])
 	{
 		if (format[i] == '%')
-			buffer += check_format(&format[++i], ap);
+			buffer += check_format(&format[++i], &ap);
 		else
 			buffer += ft_cwrite(format[i]);
 		i++;
 	}
+	va_end(ap);
 	return (buffer);
 }
 
