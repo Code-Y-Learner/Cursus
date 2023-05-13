@@ -31,7 +31,10 @@ int	ft_swrite(char *str)
 
 int	ft_cwrite(int c)
 {
-	write(1, &c, 1);
+	char	letter;
+
+	letter = (char)c;
+	write(1, &letter, 1);
 	return (1);
 }
 
@@ -58,7 +61,7 @@ int	ft_pwrite(void *ptr)
 		i++;
 	write(1, address + i, 16 - i);
 	if (ptr == 0)
-		write(1, "0", --i - 13);
+		write(1, address, --i - 14);
 	return (18 - i);
 }
 
@@ -67,14 +70,15 @@ int	ft_dwrite(int c)
 	int		i;
 	long	nb;
 
-	i = 0;
+	i = -1;
 	nb = c;
 	if (nb < 0)
 	{
-		ft_cwrite('-');
+		i += ft_cwrite('-');
 		nb *= -1;
-		i++;
 	}
+	if (!c)
+		i++;
 	while (c)
 	{
 		c /= 10;
