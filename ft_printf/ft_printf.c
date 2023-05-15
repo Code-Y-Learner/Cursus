@@ -67,20 +67,20 @@ int	ft_xwrite(int c, int case_x)
 
 	i = 0;
 	nb = (unsigned) c;
-	while (c)
-	{
-		c /= 16;
-		i++;
-	}
 	if (nb > 15)
 	{
-		ft_xwrite(nb / 16, case_x);
+		i += ft_xwrite(nb / 16, case_x);
 		if (case_x == 0)
-			ft_cwrite("0123456789abcdef"[nb % 16]);
+			i += ft_cwrite("0123456789abcdef"[nb % 16]);
 		else
-			ft_cwrite("0123456789ABCDEF"[nb % 16]);
+			i += ft_cwrite("0123456789ABCDEF"[nb % 16]);
 	}
 	else
-		i += ft_cwrite(nb + '0');
+	{
+		if (case_x == 0)
+			i += ft_cwrite("0123456789abcdef"[nb % 16]);
+		else
+			i += ft_cwrite("0123456789ABCDEF"[nb % 16]);
+	}
 	return (i);
 }

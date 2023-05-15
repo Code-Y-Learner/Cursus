@@ -29,13 +29,12 @@ int	ft_swrite(char *str)
 	return (i);
 }
 
-int	ft_cwrite(int c)
+size_t	ft_cwrite(int c)
 {
 	char	letter;
 
 	letter = (char)c;
-	write(1, &letter, 1);
-	return (1);
+	return (write(1, &letter, 1));
 }
 
 int	ft_pwrite(void *ptr)
@@ -70,24 +69,17 @@ int	ft_dwrite(int c)
 	int		i;
 	long	nb;
 
-	i = -1;
+	i = 0;
 	nb = c;
 	if (nb < 0)
 	{
 		i += ft_cwrite('-');
 		nb *= -1;
 	}
-	if (!c)
-		i++;
-	while (c)
-	{
-		c /= 10;
-		i++;
-	}
 	if (nb > 9)
 	{
-		ft_dwrite(nb / 10);
-		ft_cwrite(nb % 10 + '0');
+		i += ft_dwrite(nb / 10);
+		i += ft_cwrite(nb % 10 + '0');
 	}
 	else
 		i += ft_cwrite(nb + '0');
@@ -101,15 +93,10 @@ int	ft_uwrite(int c)
 
 	i = 0;
 	nb = (unsigned) c;
-	while (c)
-	{
-		c /= 10;
-		i++;
-	}
 	if (nb > 9)
 	{
-		ft_uwrite(nb / 10);
-		ft_cwrite(nb % 10 + '0');
+		i += ft_uwrite(nb / 10);
+		i += ft_cwrite(nb % 10 + '0');
 	}
 	else
 		i += ft_cwrite(nb + '0');
