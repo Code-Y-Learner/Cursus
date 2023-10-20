@@ -19,14 +19,12 @@
 # include <stdarg.h>
 # include <stdlib.h>
 
-int		ft_printf(const char *format, ...);
 int		check_format(const char *str, va_list *ap);
-int		ft_swrite(char *str);
-int		ft_dwrite(int c);
-size_t	ft_cwrite(int c);
+void	ft_swrite(char *str);
+void	ft_dwrite(int c);
+void	ft_cwrite(char c);
 
 int		ft_atoi(const char *str);
-int		ft_check(int pm, unsigned long long num);
 
 void	kill_checker(pid_t pid, int sig);
 void	send_bit(unsigned char c, pid_t pid);

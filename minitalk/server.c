@@ -17,7 +17,8 @@ void	get_pid(void)
 	int	i;
 
 	i = getpid();
-	ft_printf("Server PID number : %d\n", i);
+	ft_swrite("Server PID number :");
+	ft_dwrite(i);
 }
 
 void	take_bit(int sig)
@@ -31,7 +32,7 @@ void	take_bit(int sig)
 	bit_count++;
 	if (bit_count == 8)
 	{
-		ft_printf("%c", bit);
+		ft_cwrite(bit);
 		bit = 0;
 		bit_count = 0;
 	}
@@ -45,10 +46,11 @@ int	main(int argc, char **argv)
 	(void)argv;
 	sig.sa_handler = take_bit;
 	if (sigaction(SIGUSR1, &sig, NULL) == -1)
-		ft_printf("Sigaction Error");
+		ft_swrite("Sigaction Error");
 	if (sigaction(SIGUSR2, &sig, NULL) == -1)
-		ft_printf("Sigaction Error");
+		ft_swrite("Sigaction Error");
 	get_pid();
 	while (1)
-		continue ;
+		pause();
+	return (0);
 }

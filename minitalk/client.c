@@ -16,7 +16,7 @@ void	kill_checker(int sig, pid_t pid)
 {
 	if (kill(pid, sig) == -1)
 	{
-		ft_printf("Signal error.");
+		ft_swrite("Signal error.");
 		exit(1);
 	}
 }
@@ -37,7 +37,7 @@ void	send_bit(unsigned char c, pid_t pid)
 			kill_checker(SIGUSR2, pid);
 		}
 		count--;
-		usleep(100);
+		usleep(250);
 	}
 }
 
@@ -59,6 +59,7 @@ int	main(int argc, char **argv)
 		send_bit(' ', pid);
 		i++;
 	}
+	send_bit('\n', pid);
 	send_bit('\0', pid);
 	return (0);
 }

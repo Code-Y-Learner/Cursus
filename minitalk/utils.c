@@ -12,15 +12,12 @@
 
 #include "minitalk.h"
 
-size_t	ft_cwrite(int c)
+void	ft_cwrite(char c)
 {
-	char	letter;
-
-	letter = (char)c;
-	return (write(1, &letter, 1));
+	write(1, &c, 1);
 }
 
-int	ft_dwrite(int c)
+void	ft_dwrite(int c)
 {
 	int		i;
 	long	nb;
@@ -29,65 +26,60 @@ int	ft_dwrite(int c)
 	nb = c;
 	if (nb < 0)
 	{
-		i += ft_cwrite('-');
+		ft_cwrite('-');
 		nb *= -1;
 	}
 	if (nb > 9)
 	{
-		i += ft_dwrite(nb / 10);
-		i += ft_cwrite(nb % 10 + '0');
+		ft_dwrite(nb / 10);
+		ft_cwrite(nb % 10 + '0');
 	}
 	else
-		i += ft_cwrite(nb + '0');
-	return (i);
+		ft_cwrite(nb + '0');
 }
 
-int	ft_swrite(char *str)
+void	ft_swrite(char *str)
 {
 	int		i;
 
 	i = 0;
 	if (str == 0)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
+		return ;
 	while (str[i])
 		write(1, &str[i++], 1);
-	return (i);
 }
 
-int	check_format(const char *str, va_list *ap)
-{
-	int	i;
+// int	check_format(const char *str, va_list *ap)
+// {
+// 	int	i;
 
-	i = 0;
-	if (str[i] == 's')
-		i += ft_swrite(va_arg(*ap, char *));
-	else if (str[i] == 'c')
-		i += ft_cwrite(va_arg(*ap, int));
-	else if (str[i] == 'd')
-		i += ft_dwrite(va_arg(*ap, int));
-	return (i);
-}
+// 	i = 0;
+// 	if (str[i] == 's')
+// 		i += ft_swrite(va_arg(*ap, char *));
+// 	else if (str[i] == 'c')
+// 		i += ft_cwrite(va_arg(*ap, int));
+// 	else if (str[i] == 'd')
+// 		i += ft_dwrite(va_arg(*ap, int));
+// 	return (i);
+// }
 
-int	ft_printf(const char *format, ...)
-{
-	int		i;
-	int		buffer;
-	va_list	ap;
+// int	ft_printf(const char *format, ...)
+// {
+// 	int		i;
+// 	int		buffer;
+// 	va_list	ap;
 
-	i = 0;
-	buffer = 0;
-	va_start(ap, format);
-	while (format[i])
-	{
-		if (format[i] == '%')
-			buffer += check_format(&format[++i], &ap);
-		else
-			buffer += ft_cwrite(format[i]);
-		i++;
-	}
-	va_end(ap);
-	return (buffer);
-}
+// 	i = 0;
+// 	buffer = 0;
+// 	va_start(ap, format);
+// 	while (format[i])
+// 	{
+// 		if (format[i] == '%')
+// 			buffer += check_format(&format[++i], &ap);
+// 		else
+// 			buffer += ft_cwrite(format[i]);
+// 		i++;
+// 	}
+// 	va_end(ap);
+// 	return (buffer);
+// }
