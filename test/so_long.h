@@ -38,6 +38,14 @@ typedef struct s_img {
 	void	*wall;
 }				t_img;
 
+typedef struct s_check
+{
+	int	y;
+	int	x;
+	// int	collectible;
+	int	**visited;
+}				t_check;
+
 typedef struct s_game
 {
 	void	*mlx;
