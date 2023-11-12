@@ -80,6 +80,12 @@ void	map_read(char *filename, t_game *game);
 void	map_check_wall(t_game *game);
 void	map_check_params(t_game *game);
 void	map_check(t_game *game);
+void	free_visited(int **visited);
+int		**visited_init(t_game *game);
+void	dfs(t_game *game, t_check *check, int y, int x);
+void	init_check(t_game *game, t_check *check);
+void	check_path(t_game *game);
+
 
 /*
 	key.c
