@@ -25,6 +25,7 @@ void	game_init(t_game *g, char *map)
 	g->img = img_init(g->mlx);
 	map_read(map, g);
 	map_check(g);
+	check_path(g);
 	g->win = mlx_new_window(g->mlx, g->wid * 64, g->hei * 64, "so_long");
 	setting_img(g);
 }
@@ -48,6 +49,7 @@ int	press_key(int key_code, t_game *game)
 	if (key_code == KEY_D)
 		move_d(game);
 	return (0);
+	
 }
 
 int	main(int ac, char *av[])

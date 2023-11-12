@@ -94,8 +94,17 @@ void	map_check_params(t_game *game)
 		print_err("Map must have one starting position\n");
 }
 
-void	dfs(t_game *game) {
-	
+void	map_check_position(t_game *game) {
+	int	i;
+
+	i = 0;
+	while (i++ < ft_strlen(game->str_line))
+	{
+		if (game->str_line[i] == 'P') {
+			game->position.y = i / hei;
+			game->position.x = i % hei;
+		}
+	}
 }
 
 void	map_check(t_game *game)
