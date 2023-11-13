@@ -6,6 +6,7 @@ SRCS		= so_long.c \
 			  image.c \
 			  key.c \
 			  map.c \
+			  map_dfs.c\
 			  utils.c \
 			  get_next_line.c \
 			  get_next_line_utils.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youjeon <youjeon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seungjyu <seungjyu@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:14:58 by youjeon           #+#    #+#             */
-/*   Updated: 2022/03/28 18:27:58 by youjeon          ###   ########.fr       */
+/*   Updated: 2023/11/12 16:37:24 by seungjyu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	press_key(int key_code, t_game *game)
 	if (key_code == KEY_D)
 		move_d(game);
 	return (0);
-	
+
 }
 
 int	main(int ac, char *av[])

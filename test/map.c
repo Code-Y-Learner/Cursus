@@ -6,7 +6,7 @@
 /*   By: seungjyu <seungjyu@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:24:45 by youjeon           #+#    #+#             */
-/*   Updated: 2023/11/08 19:13:45 by seungjyu         ###   ########.fr       */
+/*   Updated: 2023/11/12 16:37:46 by seungjyu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,9 @@ void	map_check_position(t_game *game) {
 	while (i++ < ft_strlen(game->str_line))
 	{
 		if (game->str_line[i] == 'P') {
-			game->position.y = i / hei;
-			game->position.x = i % hei;
+			game->player_y = i / game->wid;
+			game->player_x = i % game->wid;
+			// printf("%d %d\n", game->player_y, game->player_x);
 		}
 	}
 }
@@ -113,5 +114,5 @@ void	map_check(t_game *game)
 		print_err("Map must be rectangular.\n");
 	map_check_wall(game);
 	map_check_params(game);
-	dfs(game);
+	map_check_position(game);
 }

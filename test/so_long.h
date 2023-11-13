@@ -6,7 +6,7 @@
 /*   By: seungjyu <seungjyu@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:15:01 by youjeon           #+#    #+#             */
-/*   Updated: 2023/11/08 18:07:29 by seungjyu         ###   ########.fr       */
+/*   Updated: 2023/11/12 16:27:28 by seungjyu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_check
 {
 	int	y;
 	int	x;
-	// int	collectible;
+	int	collectible;
 	int	**visited;
 }				t_check;
 
@@ -53,10 +53,13 @@ typedef struct s_game
 	t_img	img;
 	int		wid;
 	int		hei;
+	int		player_x;
+	int		player_y;
 	char	*str_line;
 	int		all_col;
 	int		col_cnt;
 	int		walk_cnt;
+	int		valid_path;
 }				t_game;
 
 /*
@@ -79,6 +82,7 @@ void	setting_img(t_game *game);
 void	map_read(char *filename, t_game *game);
 void	map_check_wall(t_game *game);
 void	map_check_params(t_game *game);
+void	map_check_position(t_game *game);
 void	map_check(t_game *game);
 void	free_visited(int **visited);
 int		**visited_init(t_game *game);
