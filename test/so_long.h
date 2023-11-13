@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungjyu <seungjyu@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: seungjyu <seungjyu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 18:15:01 by youjeon           #+#    #+#             */
-/*   Updated: 2023/11/12 16:27:28 by seungjyu         ###   ########.fr       */
+/*   Updated: 2023/11/13 21:33:22 by seungjyu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "./mlx/mlx.h"
 # include "./get_next_line.h"
-# include "libft/libft.h"
 # include <fcntl.h>
 # include <stdio.h>
 

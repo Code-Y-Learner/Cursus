@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_dfs.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungjyu <seungjyu@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: seungjyu <seungjyu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:23:43 by seungjyu          #+#    #+#             */
-/*   Updated: 2023/11/12 16:37:05 by seungjyu         ###   ########.fr       */
+/*   Updated: 2023/11/13 21:37:32 by seungjyu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	free_visited(int **visited) // visited 배열 free
 {
 	int	i;
 
-	i = -1;
-	while (visited[++i])
+	i = 0;
+	while (visited[i++])
 	{
 		free(visited[i]);
 		visited[i] = 0;
@@ -36,7 +36,7 @@ int	**visited_init(t_game *game) // visited 배열 생성
 	visited = (int **)malloc(sizeof(int *) * game->hei);
 	if (!visited)
 		return(0);
-	while (++i < game->hei - 1)
+	while (++i < game->hei)
 	{
 		visited[i] = (int *)malloc(sizeof(int) * (game->wid + 1));
 		if (!visited[i])
